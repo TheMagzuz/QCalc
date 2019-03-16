@@ -5,7 +5,7 @@ class QIconCheckbox(QPushButton):
   
 
   def __init__(self, initialValue, *args, **kwargs):
-    QPushButton.__init__(self, *args, *kwargs)
+    super(QIconCheckbox, self).__init__(*args, *kwargs)
 
     self.activeIcon = QtGui.QIcon('icons/locked-icon.png')
     self.inactiveIcon = QtGui.QIcon('icons/unlocked-icon.png')
