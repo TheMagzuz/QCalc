@@ -1,9 +1,19 @@
-from PyQt5.QtWidgets import QApplication, QLabel
+from PyQt5.QtWidgets import QApplication, QLabel, QHBoxLayout, QWidget
 from QIconCheckbox import QIconCheckbox
-from QLockableLineEdit import QLockableLineEdit
+from QElementRow import QElementRow
+from QDescriptionRow import QDescriptionRow
 
 app = QApplication([])
-button = QLockableLineEdit()
+window = QWidget()
 
-button.show()
+layout = QHBoxLayout()
+
+layout.addWidget(QDescriptionRow())
+layout.addWidget(QElementRow())
+
+window.setLayout(layout)
+
+#window.setFixedSize(window.size())
+
+window.show()
 app.exec_()

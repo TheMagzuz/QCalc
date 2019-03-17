@@ -10,13 +10,16 @@ class QLockableLineEdit(QWidget):
     self.layout = QHBoxLayout(self)
 
     self.value = 0
+    self.locked = False
 
     self.lineEdit = QLineEdit()
     self.lineEdit.setValidator(QDoubleValidator(0, 9999, 4, self.lineEdit))
     self.lineEdit.setText("0")
     self.lineEdit.textEdited.connect(self.textEdited)
 
+
     self.lockButton = QIconCheckbox(False)
+    self.lockButton.clicked.connect(self.lockedChanged)
 
     self.layout.setSpacing(0)
     self.layout.addWidget(self.lineEdit)
@@ -29,4 +32,9 @@ class QLockableLineEdit(QWidget):
     if text[0] == ".":
       text = "0" + text
     self.value = float(text)
-    print(self.value)
+
+  def lockedChanged(self): 
+    self.locked = self.lockButton.value
+    backgroundColor = "#CCCCCC" if self.locked else "#FFFFFF"
+    print(backgroundColor)
+    self.lineEdit.setStyleSheet(f"background-color: {backgroundColor}")
